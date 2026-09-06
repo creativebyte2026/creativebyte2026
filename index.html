@@ -775,6 +775,8 @@ nav{
 }
 .logo span{
   background:linear-gradient(90deg,#60a5fa,#38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .btn-primary{
   background:linear-gradient(135deg,#2563eb,#3b82f6);
@@ -805,8 +807,8 @@ nav{
 }
 .hero h1 .highlight{
   background:linear-gradient(90deg,#60a5fa,#38bdf8);
-  background-size:100% auto;
-  animation:none;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 .section-title h2{
   background:linear-gradient(90deg,#fff,#dbeafe);
@@ -892,6 +894,102 @@ footer{background:rgba(3,7,14,.2)}
 }
 .asset-fallback strong{font-size:1.1rem}.asset-fallback span{font-size:.72rem;color:#94a3b8}
 
+/* Unique Featured Showcase Poster Section */
+.featured-poster-section {
+  padding: 3rem 8%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+.featured-poster-banner {
+  position: relative;
+  border-radius: 28px;
+  background: linear-gradient(145deg, rgba(20, 30, 47, 0.9), rgba(13, 20, 33, 0.9)), radial-gradient(circle at 50% 50%, rgba(59, 130, 246, 0.15), transparent 70%);
+  border: 1px solid rgba(96, 165, 250, 0.3);
+  box-shadow: 0 25px 60px rgba(0, 0, 0, 0.4);
+  overflow: hidden;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  align-items: center;
+  gap: 2rem;
+  padding: 3rem;
+}
+.poster-showcase-content h2 {
+  font-size: clamp(2rem, 3.5vw, 2.8rem);
+  font-weight: 800;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  background: linear-gradient(90deg, #fff, #93c5fd);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.poster-showcase-content p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  margin-bottom: 1.8rem;
+}
+.poster-features {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+.poster-feature-item {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 0.9rem 1.1rem;
+  border-radius: 12px;
+  font-size: 0.88rem;
+  font-weight: 600;
+  color: #e2e8f0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.poster-feature-item span {
+  color: #38bdf8;
+}
+.poster-image-wrapper {
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  border: 1px solid rgba(96, 165, 250, 0.25);
+  box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+  cursor: pointer;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+.poster-image-wrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  transition: transform 0.4s ease;
+}
+.poster-image-wrapper:hover img {
+  transform: scale(1.03);
+}
+.poster-zoom-hint {
+  position: absolute;
+  bottom: 15px;
+  right: 15px;
+  background: rgba(8, 13, 23, 0.8);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 0.4rem 0.9rem;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  font-weight: 600;
+}
+@media(max-width: 960px) {
+  .featured-poster-banner {
+    grid-template-columns: 1fr;
+    padding: 2rem;
+  }
+}
+
 </style>
 </head>
 <body>
@@ -914,6 +1012,31 @@ footer{background:rgba(3,7,14,.2)}
 <a href="#portfolio" class="btn btn-outline">Explore Portfolio</a>
 </div>
 </header>
+
+<!-- Unique Featured Poster Showcase Section -->
+<section class="featured-poster-section">
+  <div class="featured-poster-banner">
+    <div class="poster-showcase-content">
+      <div class="badge">✦ Official Studio Showcase</div>
+      <h2>Ready to Launch Your Idea? Let's Build Together.</h2>
+      <p>Explore our complete ecosystem of digital solutions—from high-performance web development and custom apps to complete e-commerce stores and social media branding.</p>
+      <div class="poster-features">
+        <div class="poster-feature-item"><span>✓</span> Website & Web Projects</div>
+        <div class="poster-feature-item"><span>✓</span> Custom App Development</div>
+        <div class="poster-feature-item"><span>✓</span> E-Commerce & Gateways</div>
+        <div class="poster-feature-item"><span>✓</span> Social Media Management</div>
+      </div>
+      <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+        <a href="#estimator" class="btn btn-primary">Book a Solution</a>
+        <a class="btn btn-whatsapp" href="https://wa.me/919884899636?text=Hello%20CreativeByte%2C%20I%20saw%20your%20official%20poster%20and%20want%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer">Chat on WhatsApp ↗</a>
+      </div>
+    </div>
+    <div class="poster-image-wrapper" id="bannerPosterTrigger" data-type="image" data-src="poster.jpeg" data-title="CreativeByte Official Launch Poster" data-desc="All-in-one creative and digital solutions poster detailing web development, app development, e-commerce, and social media management.">
+      <img src="poster.jpeg" alt="CreativeByte Official Poster">
+      <div class="poster-zoom-hint">🔍 Click to Expand</div>
+    </div>
+  </div>
+</section>
 
 <section id="portfolio" class="section">
 <div class="section-title">
@@ -1256,12 +1379,15 @@ const modalMediaContainer = document.getElementById('modalMediaContainer');
 const modalTitle = document.getElementById('modalTitle');
 const modalDesc = document.getElementById('modalDesc');
 
-portfolioCards.forEach(card => {
-  card.addEventListener('click', () => {
-    const type = card.getAttribute('data-type');
-    const src = card.getAttribute('data-src');
-    const title = card.getAttribute('data-title');
-    const desc = card.getAttribute('data-desc');
+// Combine portfolio cards and the unique poster showcase banner for modal viewing
+const clickableItems = document.querySelectorAll('.portfolio-card, #bannerPosterTrigger');
+
+clickableItems.forEach(item => {
+  item.addEventListener('click', () => {
+    const type = item.getAttribute('data-type');
+    const src = item.getAttribute('data-src');
+    const title = item.getAttribute('data-title');
+    const desc = item.getAttribute('data-desc');
 
     modalTitle.innerText = title;
     modalDesc.innerText = desc;
