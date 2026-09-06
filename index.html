@@ -1,0 +1,1386 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/jpeg" href="creativebyte-logo.jpeg" />
+<title>CreativeByte — Digital Studio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+--bg: #0b0d14;
+--card-bg: rgba(255, 255, 255, 0.03);
+--card-hover: rgba(255, 255, 255, 0.06);
+--border: rgba(255, 255, 255, 0.08);
+--primary: #6366f1;
+--primary-glow: rgba(99, 102, 241, 0.25);
+--accent: #ec4899;
+--whatsapp: #25d366;
+--whatsapp-glow: rgba(37, 211, 102, 0.3);
+--cyan: #06b6d4;
+--text: #f8fafc;
+--text-muted: #94a3b8;
+}
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: 'Plus Jakarta Sans', sans-serif;
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  overflow-x: hidden;
+}
+
+.ambient-glow {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 1100px;
+  height: 550px;
+  background: radial-gradient(circle at 50% 20%, rgba(99, 102, 241, 0.2), rgba(236, 72, 153, 0.12), transparent 70%);
+  pointer-events: none;
+  z-index: -1;
+}
+
+/* Navbar */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 8%;
+  border-bottom: 1px solid var(--border);
+  backdrop-filter: blur(16px);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: rgba(11, 13, 20, 0.8);
+}
+
+.logo {
+  font-weight: 800;
+  font-size: 1.45rem;
+  letter-spacing: -0.02em;
+}
+
+.logo span {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.nav-links {
+  display: flex;
+  gap: 2rem;
+  list-style: none;
+}
+
+.nav-links a {
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 0.95rem;
+  font-weight: 500;
+  transition: color 0.2s ease;
+}
+
+.nav-links a:hover {
+  color: var(--text);
+}
+
+/* Buttons */
+.btn {
+  padding: 0.75rem 1.6rem;
+  border-radius: 9999px;
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  cursor: pointer;
+  border: none;
+}
+
+.btn-primary {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+  box-shadow: 0 4px 20px var(--primary-glow);
+}
+
+.btn-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(99, 102, 241, 0.45);
+}
+
+.btn-whatsapp {
+  background: linear-gradient(135deg, #25d366, #128c7e);
+  color: #fff;
+  box-shadow: 0 4px 20px var(--whatsapp-glow);
+}
+
+.btn-whatsapp:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(37, 211, 102, 0.45);
+}
+
+.btn-outline {
+  border: 1px solid var(--border);
+  color: var(--text);
+  background: var(--card-bg);
+}
+
+.btn-outline:hover {
+  background: var(--card-hover);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+/* Hero Section */
+.hero {
+  text-align: center;
+  padding: 6.5rem 1.5rem 4.5rem;
+  max-width: 920px;
+  margin: 0 auto;
+}
+
+.badge {
+  display: inline-block;
+  padding: 0.4rem 1.1rem;
+  border-radius: 999px;
+  border: 1px solid rgba(99, 102, 241, 0.35);
+  background: rgba(99, 102, 241, 0.1);
+  color: #a5b4fc;
+  font-size: 0.85rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 {
+  font-size: clamp(2.4rem, 5vw, 3.8rem);
+  font-weight: 800;
+  letter-spacing: -0.03em;
+  line-height: 1.15;
+  margin-bottom: 1.5rem;
+}
+
+.hero h1 .highlight {
+  background: linear-gradient(135deg, #a5b4fc, #f472b6);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.hero p {
+  color: var(--text-muted);
+  font-size: 1.15rem;
+  max-width: 700px;
+  margin: 0 auto 2.2rem;
+}
+
+.hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+/* Section Layout */
+.section {
+  padding: 5.5rem 8%;
+  max-width: 1240px;
+  margin: 0 auto;
+}
+
+.section-title {
+  text-align: center;
+  margin-bottom: 3.5rem;
+}
+
+.section-title h2 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+  margin-bottom: 0.6rem;
+}
+
+.section-title p {
+  color: var(--text-muted);
+  font-size: 1.05rem;
+  max-width: 550px;
+  margin: 0 auto;
+}
+
+/* Portfolio Filters */
+.filter-bar {
+  display: flex;
+  justify-content: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+  margin-bottom: 3rem;
+}
+
+.filter-btn {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  color: var(--text-muted);
+  padding: 0.6rem 1.4rem;
+  border-radius: 9999px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.filter-btn:hover {
+  color: var(--text);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.filter-btn.active {
+  background: linear-gradient(135deg, var(--primary), var(--accent));
+  color: #fff;
+  border-color: transparent;
+  box-shadow: 0 4px 15px var(--primary-glow);
+}
+
+/* Portfolio Grid */
+.portfolio-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.8rem;
+}
+
+.portfolio-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 18px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, opacity 0.3s ease;
+  cursor: pointer;
+}
+
+.portfolio-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(99, 102, 241, 0.4);
+}
+
+.portfolio-preview {
+  height: 210px;
+  width: 100%;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.preview-badge {
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  background: rgba(11, 13, 20, 0.7);
+  backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 999px;
+  font-weight: 600;
+  z-index: 2;
+}
+
+.preview-web { background: linear-gradient(135deg, #1e1b4b, #312e81); }
+.preview-poster { background: linear-gradient(135deg, #4c0519, #831843); }
+.preview-video { background: linear-gradient(135deg, #164e63, #083344); }
+.preview-photo { background: linear-gradient(135deg, #14532d, #064e3b); }
+
+.portfolio-info {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.portfolio-info h3 {
+  font-size: 1.25rem;
+  margin-bottom: 0.4rem;
+  font-weight: 700;
+}
+
+.portfolio-info p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+  flex-grow: 1;
+}
+
+.portfolio-tags {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tag {
+  font-size: 0.75rem;
+  padding: 0.25rem 0.65rem;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.05);
+  color: #cbd5e1;
+  font-weight: 500;
+}
+
+/* Modal Lightbox for Fullscreen View */
+.modal-overlay {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(11, 13, 20, 0.95);
+  backdrop-filter: blur(14px);
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+.modal-content {
+  position: relative;
+  max-width: 950px;
+  width: 100%;
+  max-height: 92vh;
+  background: #12151f;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.8);
+}
+
+.modal-media-container {
+  width: 100%;
+  height: 65vh;
+  background: #000;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  position: relative;
+}
+
+.modal-media-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.modal-media-container video {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
+}
+
+.modal-details {
+  padding: 1.5rem;
+  background: #12151f;
+  border-top: 1px solid var(--border);
+  max-height: 25vh;
+  overflow-y: auto;
+}
+
+.modal-details h3 {
+  font-size: 1.35rem;
+  margin-bottom: 0.4rem;
+}
+
+.modal-details p {
+  color: var(--text-muted);
+  font-size: 0.95rem;
+}
+
+.modal-close {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: rgba(0, 0, 0, 0.7);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  font-size: 1.3rem;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  transition: background 0.2s ease;
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+/* Calculator & Form Section */
+.calculator-form-container {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: 2rem;
+  align-items: start;
+}
+
+.calc-card, .form-card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  padding: 2.2rem;
+}
+
+.calc-card h3, .form-card h3 {
+  font-size: 1.4rem;
+  margin-bottom: 0.4rem;
+}
+
+.calc-card .subtitle, .form-card .subtitle {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  margin-bottom: 1.8rem;
+}
+
+.form-group {
+  margin-bottom: 1.25rem;
+}
+
+.form-group label {
+  display: block;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #cbd5e1;
+  margin-bottom: 0.5rem;
+}
+
+.form-control {
+  width: 100%;
+  padding: 0.8rem 1rem;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  color: var(--text);
+  font-size: 0.95rem;
+  transition: all 0.2s ease;
+  outline: none;
+}
+
+.form-control:focus {
+  border-color: var(--primary);
+  background: rgba(255, 255, 255, 0.07);
+  box-shadow: 0 0 0 3px rgba(99, 102, 241, 0.15);
+}
+
+textarea.form-control {
+  resize: vertical;
+  min-height: 100px;
+}
+
+.options-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  margin-bottom: 1.25rem;
+}
+
+.option-label {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.75rem 1rem;
+  background: rgba(255, 255, 255, 0.02);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.2s ease;
+}
+
+.option-label:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.15);
+}
+
+.option-label input {
+  accent-color: var(--primary);
+  margin-right: 0.75rem;
+  transform: scale(1.1);
+}
+
+.option-left {
+  display: flex;
+  align-items: center;
+}
+
+.option-price {
+  color: #a5b4fc;
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.estimate-display {
+  background: rgba(99, 102, 241, 0.08);
+  border: 1px dashed rgba(99, 102, 241, 0.35);
+  border-radius: 12px;
+  padding: 1.25rem;
+  margin-top: 1.5rem;
+  text-align: center;
+}
+
+.estimate-title {
+  font-size: 0.85rem;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  margin-bottom: 0.3rem;
+}
+
+.estimate-amount {
+  font-size: 2.2rem;
+  font-weight: 800;
+  color: #fff;
+}
+
+.form-success-message {
+  display: none;
+  padding: 1rem;
+  background: rgba(37, 211, 102, 0.12);
+  border: 1px solid rgba(37, 211, 102, 0.3);
+  color: #86efac;
+  border-radius: 10px;
+  font-size: 0.9rem;
+  margin-bottom: 1.2rem;
+  text-align: center;
+}
+
+/* Footer */
+footer {
+  border-top: 1px solid var(--border);
+  text-align: center;
+  padding: 2.5rem 1rem;
+  color: var(--text-muted);
+  font-size: 0.88rem;
+}
+
+@media (max-width: 960px) {
+  .calculator-form-container { grid-template-columns: 1fr; }
+  .nav-links { display: none; }
+  .section { padding: 4rem 6%; }
+}
+
+/* ===== CreativeByte Premium Theme Upgrade ===== */
+:root{
+  --bg:#070914;
+  --surface:rgba(17,20,38,.72);
+  --surface-2:rgba(255,255,255,.055);
+  --border:rgba(255,255,255,.11);
+  --primary:#7c3aed;
+  --primary-2:#06b6d4;
+  --accent:#f43f5e;
+  --gold:#fbbf24;
+}
+body{
+  background:
+    radial-gradient(circle at 8% 12%, rgba(124,58,237,.18), transparent 28rem),
+    radial-gradient(circle at 92% 28%, rgba(6,182,212,.13), transparent 30rem),
+    radial-gradient(circle at 50% 85%, rgba(244,63,94,.08), transparent 32rem),
+    var(--bg);
+}
+body::before{
+  content:"";
+  position:fixed; inset:0; pointer-events:none; z-index:-2;
+  background-image:linear-gradient(rgba(255,255,255,.025) 1px,transparent 1px),
+                   linear-gradient(90deg,rgba(255,255,255,.025) 1px,transparent 1px);
+  background-size:42px 42px;
+  mask-image:linear-gradient(to bottom,black,transparent 85%);
+}
+nav{
+  padding:1rem 6%;
+  background:rgba(7,9,20,.72);
+  box-shadow:0 12px 35px rgba(0,0,0,.18);
+}
+.logo{
+  display:flex; align-items:center; gap:.1rem;
+}
+.logo img{box-shadow:0 0 25px rgba(124,58,237,.3);}
+.nav-links a{position:relative;}
+.nav-links a::after{
+  content:""; position:absolute; left:0; bottom:-8px; width:0; height:2px;
+  background:linear-gradient(90deg,var(--primary),var(--primary-2));
+  transition:.25s;
+}
+.nav-links a:hover::after{width:100%;}
+.btn-primary{
+  background:linear-gradient(135deg,var(--primary),#a855f7 55%,var(--accent));
+  box-shadow:0 10px 35px rgba(124,58,237,.28);
+}
+.btn-primary:hover{box-shadow:0 14px 45px rgba(124,58,237,.42);}
+.hero{padding:7.5rem 1.5rem 5rem; position:relative;}
+.hero::after{
+  content:""; position:absolute; width:420px; height:420px; border-radius:50%;
+  border:1px solid rgba(124,58,237,.12); top:25px; left:50%; transform:translateX(-50%);
+  z-index:-1; box-shadow:0 0 100px rgba(124,58,237,.08);
+}
+.badge{
+  background:linear-gradient(90deg,rgba(124,58,237,.13),rgba(6,182,212,.1));
+  border-color:rgba(124,58,237,.4);
+  box-shadow:0 8px 30px rgba(124,58,237,.1);
+}
+.hero h1{font-size:clamp(2.7rem,6vw,5rem);}
+.hero h1 .highlight{
+  background:linear-gradient(100deg,#a78bfa,#22d3ee,#fb7185);
+  background-size:200% auto;
+  animation:gradientShift 5s ease infinite;
+}
+.hero p{font-size:1.12rem;}
+.section-title h2{
+  background:linear-gradient(90deg,#fff,#c4b5fd,#67e8f9);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.portfolio-card,.calc-card,.form-card{
+  background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  box-shadow:0 15px 45px rgba(0,0,0,.16);
+}
+.portfolio-card:hover{
+  border-color:rgba(167,139,250,.5);
+  box-shadow:0 18px 55px rgba(124,58,237,.16);
+}
+.portfolio-preview::after{
+  content:""; position:absolute; inset:0;
+  background:linear-gradient(to top,rgba(0,0,0,.35),transparent 55%);
+  pointer-events:none;
+}
+.filter-btn.active{
+  background:linear-gradient(135deg,var(--primary),#06b6d4);
+}
+.estimate-display{
+  background:linear-gradient(135deg,rgba(124,58,237,.13),rgba(6,182,212,.08));
+  box-shadow:inset 0 0 35px rgba(124,58,237,.05);
+}
+.estimate-amount{
+  background:linear-gradient(90deg,#fff,#c4b5fd,#67e8f9);
+  -webkit-background-clip:text; -webkit-text-fill-color:transparent;
+}
+.form-control{background:rgba(5,8,18,.45);}
+.form-control:focus{
+  border-color:#8b5cf6;
+  box-shadow:0 0 0 3px rgba(124,58,237,.15),0 0 25px rgba(124,58,237,.08);
+}
+.option-label:hover{transform:translateX(3px);}
+footer{background:rgba(0,0,0,.15);}
+@keyframes gradientShift{0%,100%{background-position:0% 50%}50%{background-position:100% 50%}}
+@keyframes floatIn{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.hero>*{animation:floatIn .7s ease both;}
+.hero>*:nth-child(2){animation-delay:.08s}.hero>*:nth-child(3){animation-delay:.16s}.hero>*:nth-child(4){animation-delay:.24s}
+@media(max-width:960px){
+  nav{padding:1rem 4%;}
+  nav>.btn{display:none;}
+  .nav-links{display:flex;gap:1rem;overflow:auto;max-width:70vw;}
+  .nav-links a{font-size:.8rem;white-space:nowrap;}
+}
+@media(max-width:620px){
+  .hero{padding-top:5.5rem;}
+  .hero-actions .btn{width:100%;}
+  .section{padding:4rem 5%;}
+  .portfolio-grid{grid-template-columns:1fr;}
+  .calc-card,.form-card{padding:1.35rem;}
+}
+
+
+/* ===== Agency Sections ===== */
+.agency-section,.about-section,.process-section,.pricing-section,.testimonial-section,.faq-section,.contact-section{position:relative}
+.service-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}
+.service-card,.process-step,.testimonial-card,.price-card,.about-stats>div{
+  background:linear-gradient(145deg,rgba(255,255,255,.065),rgba(255,255,255,.025));
+  border:1px solid var(--border);border-radius:20px;padding:1.6rem;
+  transition:.3s ease;
+}
+.service-card:hover,.process-step:hover,.testimonial-card:hover,.price-card:hover{transform:translateY(-7px);border-color:rgba(124,58,237,.45);box-shadow:0 20px 50px rgba(0,0,0,.2)}
+.service-icon{width:48px;height:48px;border-radius:14px;display:grid;place-items:center;font-size:1.35rem;margin-bottom:1.2rem;background:linear-gradient(135deg,rgba(124,58,237,.22),rgba(6,182,212,.12));border:1px solid rgba(167,139,250,.2)}
+.service-card h3{font-size:1.12rem;margin-bottom:.55rem}.service-card p,.service-card span{color:var(--text-muted);font-size:.88rem}.service-card span{display:block;margin-top:1rem;font-size:.75rem;color:#a5b4fc}
+.about-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:4rem;align-items:center}
+.about-grid h2{font-size:clamp(2rem,4vw,3.3rem);line-height:1.12;margin:1rem 0 1.2rem}
+.about-grid p{color:var(--text-muted);margin-bottom:1rem;max-width:650px}
+.about-grid .highlight{background:linear-gradient(90deg,#a78bfa,#22d3ee);-webkit-background-clip:text;-webkit-text-fill-color:transparent}
+.about-stats{display:grid;gap:1rem}.about-stats>div{display:grid;grid-template-columns:55px 1fr;column-gap:1rem}.about-stats strong{grid-row:span 2;color:#a78bfa;font-size:1.2rem}.about-stats span{font-weight:700}.about-stats p{color:var(--text-muted);font-size:.82rem}
+.process-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem}.process-step b{font-size:2rem;color:#a78bfa}.process-step h3{margin:.7rem 0 .35rem}.process-step p{color:var(--text-muted);font-size:.86rem}
+.pricing-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.25rem;align-items:stretch}.price-card{position:relative}.price-card.featured{border-color:rgba(124,58,237,.55);box-shadow:0 18px 60px rgba(124,58,237,.13)}.popular{position:absolute;right:16px;top:16px;font-size:.65rem;font-weight:800;letter-spacing:.08em;color:#c4b5fd}.price-label{font-size:.72rem;letter-spacing:.14em;color:#67e8f9;font-weight:800}.price-card h3{font-size:1.5rem;margin:.35rem 0}.price{font-size:2.25rem;font-weight:800;margin:.4rem 0 1rem}.price span{font-size:1rem;color:#94a3b8}.price-card>p:not(.price-label){color:var(--text-muted);font-size:.85rem}.price-card ul{list-style:none;margin:1.3rem 0 1.5rem;display:grid;gap:.65rem}.price-card li{font-size:.85rem;color:#cbd5e1}.price-card li::before{content:"✓";color:#67e8f9;margin-right:.55rem}.price-card .btn{width:100%}
+.testimonial-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.2rem}.testimonial-card p{color:#cbd5e1;font-size:.92rem;min-height:105px}.stars{color:#fbbf24;letter-spacing:.12em;margin-bottom:1rem}.person{display:flex;gap:.75rem;align-items:center;border-top:1px solid var(--border);padding-top:1rem}.person>span{width:38px;height:38px;border-radius:50%;display:grid;place-items:center;background:linear-gradient(135deg,#7c3aed,#06b6d4);font-weight:800}.person small{display:block;color:var(--text-muted);font-size:.72rem;margin-top:.15rem}
+.faq-list{max-width:850px;margin:auto;display:grid;gap:.75rem}.faq-list details{background:rgba(255,255,255,.04);border:1px solid var(--border);border-radius:14px;padding:0 1.2rem}.faq-list summary{cursor:pointer;list-style:none;padding:1.15rem 0;font-weight:700;display:flex;justify-content:space-between}.faq-list summary::-webkit-details-marker{display:none}.faq-list summary span{color:#a78bfa;font-size:1.3rem}.faq-list details[open] summary span{transform:rotate(45deg)}.faq-list details p{color:var(--text-muted);padding:0 0 1.2rem;font-size:.88rem;max-width:750px}
+.contact-panel{display:flex;justify-content:space-between;align-items:center;gap:2rem;padding:3rem;border-radius:28px;border:1px solid rgba(124,58,237,.3);background:radial-gradient(circle at 15% 10%,rgba(124,58,237,.2),transparent 35%),linear-gradient(135deg,rgba(255,255,255,.065),rgba(255,255,255,.025));box-shadow:0 25px 80px rgba(0,0,0,.22)}.contact-copy h2{font-size:clamp(2rem,4vw,3.3rem);line-height:1.1;margin:1rem 0}.contact-copy h2 .highlight{background:linear-gradient(90deg,#a78bfa,#22d3ee,#fb7185);-webkit-background-clip:text;-webkit-text-fill-color:transparent}.contact-copy>p{color:var(--text-muted);max-width:600px}.contact-links{display:flex;flex-wrap:wrap;gap:1rem;margin-top:1.4rem}.contact-links a{color:#cbd5e1;text-decoration:none;font-size:.84rem}.contact-links a:hover{color:#fff}.contact-actions{display:grid;gap:.8rem;min-width:245px}.contact-actions .btn{width:100%}
+@media(max-width:960px){.service-grid{grid-template-columns:repeat(2,1fr)}.about-grid{grid-template-columns:1fr}.process-grid{grid-template-columns:repeat(2,1fr)}.pricing-grid,.testimonial-grid{grid-template-columns:1fr}.contact-panel{flex-direction:column;align-items:flex-start}.contact-actions{width:100%;max-width:360px}}
+@media(max-width:620px){.service-grid,.process-grid{grid-template-columns:1fr}.service-card,.process-step,.price-card,.testimonial-card{padding:1.3rem}.contact-panel{padding:1.5rem}.contact-links{display:grid}}
+
+
+/* ===== Final Professional Visual System ===== */
+:root{
+  --bg:#0a0f1a;
+  --bg-2:#0d1422;
+  --card-bg:rgba(18,27,43,.78);
+  --card-hover:rgba(24,35,54,.92);
+  --border:rgba(148,163,184,.14);
+  --border-strong:rgba(96,165,250,.32);
+  --primary:#3b82f6;
+  --primary-dark:#2563eb;
+  --accent:#38bdf8;
+  --success:#22c55e;
+  --text:#f8fafc;
+  --text-muted:#94a3b8;
+  --heading:#ffffff;
+  --shadow:0 20px 55px rgba(0,0,0,.28);
+}
+html{scroll-padding-top:90px}
+body{
+  background:
+    radial-gradient(circle at 10% 0%,rgba(59,130,246,.09),transparent 32rem),
+    radial-gradient(circle at 90% 12%,rgba(56,189,248,.06),transparent 30rem),
+    linear-gradient(180deg,#080d17 0%,#0a0f1a 48%,#0c1320 100%);
+}
+body::before{
+  opacity:.45;
+  background-size:48px 48px;
+}
+.ambient-glow{
+  width:900px;height:500px;
+  background:radial-gradient(circle at 50% 25%,rgba(59,130,246,.12),rgba(56,189,248,.045),transparent 68%);
+}
+nav{
+  padding:1rem 6%;
+  background:rgba(8,13,23,.88);
+  border-bottom:1px solid rgba(148,163,184,.12);
+}
+.logo span{
+  background:linear-gradient(90deg,#60a5fa,#38bdf8);
+}
+.btn-primary{
+  background:linear-gradient(135deg,#2563eb,#3b82f6);
+  box-shadow:0 8px 25px rgba(37,99,235,.22);
+}
+.btn-primary:hover{
+  box-shadow:0 12px 32px rgba(37,99,235,.32);
+}
+.btn-whatsapp{
+  background:#16a34a;
+  box-shadow:0 8px 24px rgba(22,163,74,.2);
+}
+.btn-whatsapp:hover{box-shadow:0 12px 30px rgba(22,163,74,.3)}
+.btn-outline{
+  background:rgba(255,255,255,.025);
+  border-color:rgba(148,163,184,.18);
+}
+.badge{
+  border-color:rgba(96,165,250,.24);
+  background:rgba(59,130,246,.07);
+  color:#bfdbfe;
+}
+.hero{padding:7rem 1.5rem 5rem}
+.hero::after{
+  width:460px;height:460px;
+  border-color:rgba(96,165,250,.07);
+  box-shadow:0 0 100px rgba(37,99,235,.06);
+}
+.hero h1 .highlight{
+  background:linear-gradient(90deg,#60a5fa,#38bdf8);
+  background-size:100% auto;
+  animation:none;
+}
+.section-title h2{
+  background:linear-gradient(90deg,#fff,#dbeafe);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.portfolio-card,.calc-card,.form-card,
+.service-card,.process-step,.testimonial-card,.price-card,.about-stats>div{
+  background:linear-gradient(145deg,rgba(20,30,47,.82),rgba(13,20,33,.82));
+  border-color:rgba(148,163,184,.13);
+  box-shadow:0 12px 38px rgba(0,0,0,.16);
+}
+.portfolio-card:hover,.service-card:hover,.process-step:hover,
+.testimonial-card:hover,.price-card:hover{
+  border-color:rgba(96,165,250,.32);
+  box-shadow:var(--shadow);
+}
+.filter-btn.active{
+  background:linear-gradient(135deg,#2563eb,#3b82f6);
+  box-shadow:0 7px 20px rgba(37,99,235,.2);
+}
+.option-label:hover{border-color:rgba(96,165,250,.25)}
+.option-label input{accent-color:#3b82f6}
+.option-price{color:#93c5fd}
+.estimate-display{
+  background:rgba(59,130,246,.055);
+  border-color:rgba(96,165,250,.22);
+}
+.estimate-amount{
+  background:linear-gradient(90deg,#fff,#bfdbfe);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.form-control{background:rgba(5,10,18,.48)}
+.form-control:focus{
+  border-color:#3b82f6;
+  box-shadow:0 0 0 3px rgba(59,130,246,.12);
+}
+.service-icon{
+  background:rgba(59,130,246,.08);
+  border-color:rgba(96,165,250,.15);
+  color:#93c5fd;
+}
+.service-card span,.price-label{color:#93c5fd}
+.about-grid .highlight,.contact-copy h2 .highlight{
+  background:linear-gradient(90deg,#60a5fa,#38bdf8);
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+}
+.about-stats strong,.process-step b{color:#60a5fa}
+.price-card.featured{
+  border-color:rgba(96,165,250,.36);
+  box-shadow:0 20px 60px rgba(37,99,235,.12);
+}
+.popular{color:#93c5fd}
+.stars{color:#fbbf24}
+.person>span{
+  background:linear-gradient(135deg,#2563eb,#0ea5e9);
+}
+.contact-panel{
+  border-color:rgba(96,165,250,.24);
+  background:
+    radial-gradient(circle at 10% 10%,rgba(59,130,246,.11),transparent 38%),
+    linear-gradient(135deg,rgba(20,30,47,.88),rgba(13,20,33,.88));
+}
+footer{background:rgba(3,7,14,.2)}
+/* Keep nav useful on smaller screens */
+@media(max-width:960px){
+  nav{padding:1rem 4%}
+  .nav-links{display:flex;gap:.9rem;overflow:auto;max-width:72vw}
+  .nav-links a{font-size:.78rem;white-space:nowrap}
+}
+@media(max-width:620px){
+  .nav-links{max-width:100%;padding-right:.25rem}
+  .logo{font-size:1.2rem}
+  .logo img{height:36px!important;width:36px!important}
+}
+
+
+.asset-fallback{
+  position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:.3rem;background:linear-gradient(135deg,#111c2d,#0b1321);color:#e2e8f0;
+}
+.asset-fallback strong{font-size:1.1rem}.asset-fallback span{font-size:.72rem;color:#94a3b8}
+
+</style>
+</head>
+<body>
+<div class="ambient-glow"></div>
+<nav>
+<div class="logo"><img src="creativebyte-logo.jpeg" alt="CreativeByte Logo" style="height: 42px; width: 42px; object-fit: contain; border-radius: 50%; vertical-align: middle; margin-right: 0.55rem;" />Creative<span>Byte</span></div>
+<ul class="nav-links">
+<li><a href="#services">Services</a></li><li><a href="#about">About</a></li><li><a href="#portfolio">Portfolio</a></li>
+<li><a href="#pricing">Pricing</a></li><li><a href="#testimonials">Reviews</a></li><li><a href="#faq">FAQ</a></li><li><a href="#estimator">Estimator</a></li>
+<li><a href="#estimator">WhatsApp Inquiry</a></li>
+</ul>
+<a href="#estimator" class="btn btn-primary">Get an Estimate</a>
+</nav>
+<header class="hero">
+<div class="badge">✦ All-in-One Creative & Digital Studio</div>
+<h1>Build a brand people <span class="highlight">remember.</span></h1>
+<p>CreativeByte is your all-in-one digital studio for websites, branding, posters, photo editing and video content.</p>
+<div class="hero-actions">
+<a href="#estimator" class="btn btn-primary">Estimate Cost & Order</a>
+<a href="#portfolio" class="btn btn-outline">Explore Portfolio</a>
+</div>
+</header>
+
+<section id="portfolio" class="section">
+<div class="section-title">
+<h2>Featured Works</h2>
+<p>Click on any project card to view it in full screen.</p>
+</div>
+
+<div class="filter-bar">
+  <button class="filter-btn active" data-filter="all">All Works</button>
+  <button class="filter-btn" data-filter="web">Web Development</button>
+  <button class="filter-btn" data-filter="poster">Posters & Design</button>
+  <button class="filter-btn" data-filter="video">Video Editing</button>
+  <button class="filter-btn" data-filter="photo">Photo Editing</button>
+</div>
+
+<div class="portfolio-grid" id="portfolioGrid">
+  <div class="portfolio-card" data-category="web" data-type="video" data-src="demo-web.mp4" data-title="NovaSaaS Marketing Site" data-desc="High-conversion Next.js landing page with interactive product tour and 99+ Lighthouse score.">
+    <div class="portfolio-preview preview-web">
+      <span class="preview-badge">Web Platform</span>
+      <video src="demo-web.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;"></video>
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#a5b4fc" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect width="18" height="18" x="3" y="3" rx="2"/><path d="m9 8 3 3-3 3"/><path d="M14 14h1"/></svg>
+    </div>
+    <div class="portfolio-info">
+      <h3>NovaSaaS Marketing Site</h3>
+      <p>High-conversion Next.js landing page with interactive product tour and 99+ Lighthouse score.</p>
+      <div class="portfolio-tags">
+        <span class="tag">Next.js</span>
+        <span class="tag">Tailwind CSS</span>
+        <span class="tag">Framer Motion</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-card" data-category="video" data-type="video" data-src="demo-video.mp4" data-title="HyperDrive Brand Commercial" data-desc="Fast-paced 30s product hype reel with synchronized SFX, custom transitions, and 4K color grade.">
+    <div class="portfolio-preview preview-video">
+      <span class="preview-badge">Video Edit</span>
+      <video src="demo-video.mp4" autoplay loop muted playsinline style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;"></video>
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#67e8f9" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polygon points="10 8 16 12 10 16 10 8"/></svg>
+    </div>
+    <div class="portfolio-info">
+      <h3>HyperDrive Brand Commercial</h3>
+      <p>Fast-paced 30s product hype reel with synchronized SFX, custom transitions, and 4K color grade.</p>
+      <div class="portfolio-tags">
+        <span class="tag">Premiere Pro</span>
+        <span class="tag">After Effects</span>
+        <span class="tag">Sound Design</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-card" data-category="poster" data-type="image" data-src="demo-poster.png" data-title="Echoes Music Festival 2026" data-desc="Neon-brutalist event poster and matching social media carousel set prepared for print and web.">
+    <div class="portfolio-preview preview-poster">
+      <span class="preview-badge">Poster Design</span>
+      <img src="demo-poster.png" alt="Poster Demo" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#f472b6" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16v16H4z"/><path d="m4 15 5-5 4 4 6-6"/><circle cx="8.5" cy="8.5" r="1.5"/></svg>
+    </div>
+    <div class="portfolio-info">
+      <h3>Echoes Music Festival 2026</h3>
+      <p>Neon-brutalist event poster and matching social media carousel set prepared for print and web.</p>
+      <div class="portfolio-tags">
+        <span class="tag">Photoshop</span>
+        <span class="tag">Illustrator</span>
+        <span class="tag">Print Ready</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="portfolio-card" data-category="photo" data-type="image" data-src="demo-photo.png" data-title="Luxe Chronograph Commercial Retouch" data-desc="Multi-layer frequency separation, metal reflection reconstruction, and high-end studio lighting cleanup.">
+    <div class="portfolio-preview preview-photo">
+      <span class="preview-badge">Photo Retouch</span>
+      <img src="demo-photo.png" alt="Photo Demo" style="width: 100%; height: 100%; object-fit: cover; position: absolute; top:0; left:0;">
+      <svg width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#86efac" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3a9 9 0 1 0 9 9c0-.46-.04-.92-.1-1.36a5.389 5.389 0 0 1-4.4 2.26 5.403 5.403 0 0 1-3.14-9.8c-.44-.06-.9-.1-1.36-.1z"/></svg>
+    </div>
+    <div class="portfolio-info">
+      <h3>Luxe Chronograph Commercial Retouch</h3>
+      <p>Multi-layer frequency separation, metal reflection reconstruction, and high-end studio lighting cleanup.</p>
+      <div class="portfolio-tags">
+        <span class="tag">Commercial</span>
+        <span class="tag">Color Match</span>
+        <span class="tag">Frequency Separation</span>
+      </div>
+    </div>
+  </div>
+</div>
+</section>
+
+<div class="modal-overlay" id="portfolioModal">
+  <div class="modal-content">
+    <button class="modal-close" id="modalClose">&times;</button>
+    <div class="modal-media-container" id="modalMediaContainer">
+      </div>
+    <div class="modal-details">
+      <h3 id="modalTitle">Project Title</h3>
+      <p id="modalDesc">Project description goes here.</p>
+    </div>
+  </div>
+</div>
+
+
+<!-- ===== Agency Services ===== -->
+<section id="services" class="section agency-section">
+  <div class="section-title">
+    <div class="badge">✦ What We Do</div>
+    <h2>Creative services built for modern brands</h2>
+    <p>From your first idea to the final launch, CreativeByte combines design, development and content into one focused studio.</p>
+  </div>
+  <div class="service-grid">
+    <article class="service-card"><div class="service-icon">⌘</div><h3>Web Development</h3><p>Fast, responsive business websites, landing pages and custom web experiences.</p><span>UI • UX • Development</span></article>
+    <article class="service-card"><div class="service-icon">✦</div><h3>Brand & Poster Design</h3><p>Scroll-stopping posters, social creatives and visual identities that feel consistent.</p><span>Branding • Social • Print</span></article>
+    <article class="service-card"><div class="service-icon">▶</div><h3>Video Editing</h3><p>Engaging reels, ads and promotional videos with clean cuts, motion and sound design.</p><span>Reels • Ads • YouTube</span></article>
+    <article class="service-card"><div class="service-icon">◈</div><h3>Photo Editing</h3><p>Professional retouching, color correction and creative edits for products and people.</p><span>Retouch • Color • Creative</span></article>
+  </div>
+</section>
+
+<!-- ===== About ===== -->
+<section id="about" class="section about-section">
+  <div class="about-grid">
+    <div>
+      <div class="badge">✦ About CreativeByte</div>
+      <h2>Small studio energy.<br><span class="highlight">Big digital ambition.</span></h2>
+      <p>CreativeByte is an all-in-one digital and creative studio helping students, creators, startups, shops and growing brands build a stronger online presence.</p>
+      <p>We focus on practical solutions, modern visuals and clear communication—so you can spend less time coordinating different people and more time growing your idea.</p>
+      <a href="#contact" class="btn btn-primary">Start a Project →</a>
+    </div>
+    <div class="about-stats">
+      <div><strong>01</strong><span>Understand</span><p>We learn what you need and who you're trying to reach.</p></div>
+      <div><strong>02</strong><span>Create</span><p>We design and build with a clean, modern visual direction.</p></div>
+      <div><strong>03</strong><span>Deliver</span><p>We refine the work and deliver ready-to-use files and solutions.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Process ===== -->
+<section class="section process-section">
+  <div class="section-title"><div class="badge">✦ Simple Process</div><h2>From idea to launch</h2><p>A straightforward workflow designed to keep your project moving.</p></div>
+  <div class="process-grid">
+    <div class="process-step"><b>01</b><h3>Discuss</h3><p>Tell us your idea, requirements, references and deadline.</p></div>
+    <div class="process-step"><b>02</b><h3>Plan</h3><p>We define the deliverables, visual direction and estimated cost.</p></div>
+    <div class="process-step"><b>03</b><h3>Build</h3><p>Our creative and development work turns the plan into reality.</p></div>
+    <div class="process-step"><b>04</b><h3>Launch</h3><p>Review, refine and receive the final project ready to use.</p></div>
+  </div>
+</section>
+
+<!-- ===== Pricing ===== -->
+<section id="pricing" class="section pricing-section">
+  <div class="section-title"><div class="badge">✦ Transparent Starting Prices</div><h2>Choose a package that fits your stage</h2><p>Simple starting points. Final quotes depend on your exact requirements.</p></div>
+  <div class="pricing-grid">
+    <article class="price-card"><p class="price-label">STARTER</p><h3>Creator</h3><div class="price">₹999<span>+</span></div><p>For individual creators and simple creative needs.</p><ul><li>Poster / social creative</li><li>Basic photo editing</li><li>1 revision round</li><li>Delivery-ready files</li></ul><a href="#estimator" class="btn btn-outline">Choose Creator</a></article>
+    <article class="price-card featured"><div class="popular">MOST POPULAR</div><p class="price-label">GROWTH</p><h3>Business</h3><div class="price">₹4,999<span>+</span></div><p>For shops, startups and brands building their presence.</p><ul><li>Professional website</li><li>Brand/social creatives</li><li>Responsive design</li><li>Revisions & support</li></ul><a href="#estimator" class="btn btn-primary">Choose Business</a></article>
+    <article class="price-card"><p class="price-label">PREMIUM</p><h3>Custom</h3><div class="price">Let's Talk</div><p>For larger or fully customized digital projects.</p><ul><li>Custom web experience</li><li>Video & creative package</li><li>Advanced integrations</li><li>Dedicated project planning</li></ul><a href="#contact" class="btn btn-outline">Talk to Us</a></article>
+  </div>
+</section>
+
+<!-- ===== Testimonials ===== -->
+<section id="testimonials" class="section testimonial-section">
+  <div class="section-title"><div class="badge">✦ Client Experience</div><h2>Built around your goals</h2><p>A few example testimonials you can replace with verified client feedback as your portfolio grows.</p></div>
+  <div class="testimonial-grid">
+    <article class="testimonial-card"><div class="stars">★★★★★</div><p>“The website looked modern, worked smoothly on mobile and made our business feel much more professional online.”</p><div class="person"><span>R</span><div><strong>Business Client</strong><small>Website Project</small></div></div></article>
+    <article class="testimonial-card"><div class="stars">★★★★★</div><p>“The poster and social designs were clean, attractive and delivered exactly in the formats we needed.”</p><div class="person"><span>C</span><div><strong>Creator Client</strong><small>Design Project</small></div></div></article>
+    <article class="testimonial-card"><div class="stars">★★★★★</div><p>“Communication was simple and the final edit had the polished feel we wanted for our promotion.”</p><div class="person"><span>S</span><div><strong>Startup Client</strong><small>Video Project</small></div></div></article>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section id="faq" class="section faq-section">
+  <div class="section-title"><div class="badge">✦ FAQ</div><h2>Questions, answered</h2></div>
+  <div class="faq-list">
+    <details><summary>How do I start a project?<span>+</span></summary><p>Choose your services in the estimator or contact CreativeByte directly. Share your requirements and we will discuss the scope and quote.</p></details>
+    <details><summary>Can I request changes?<span>+</span></summary><p>Yes. Revision rounds can be included depending on the package and project scope. The final revision policy will be confirmed before work begins.</p></details>
+    <details><summary>Do you work with businesses and students?<span>+</span></summary><p>Yes. CreativeByte can work on websites, posters, videos, photos and digital projects for different types of clients.</p></details>
+    <details><summary>How is the final price decided?<span>+</span></summary><p>The estimator provides a baseline. Complex features, number of pages, content requirements and turnaround time can affect the final quote.</p></details>
+    <details><summary>Can you make a custom package?<span>+</span></summary><p>Absolutely. If your project needs multiple services, contact us and we can build a package around the actual deliverables.</p></details>
+  </div>
+</section>
+
+<!-- ===== Contact ===== -->
+<section id="contact" class="section contact-section">
+  <div class="contact-panel">
+    <div class="contact-copy">
+      <div class="badge">✦ Let's Build Something</div>
+      <h2>Have an idea?<br><span class="highlight">Let's make it real.</span></h2>
+      <p>Tell us what you're building. We'll turn your requirements into a clear next step.</p>
+      <div class="contact-links">
+        <a href="mailto:creativebyte2026@gmail.com">✉ creativebyte2026@gmail.com</a>
+        <a href="tel:9884899636">☎ 98848 99636</a>
+        <a href="https://www.instagram.com/creative_byte26" target="_blank" rel="noopener noreferrer">◎ @creative_byte26</a>
+      </div>
+    </div>
+    <div class="contact-actions">
+      <a class="btn btn-whatsapp" href="https://wa.me/919884899636?text=Hello%20CreativeByte%2C%20I%20would%20like%20to%20discuss%20a%20project." target="_blank" rel="noopener noreferrer">Chat on WhatsApp ↗</a>
+      <a class="btn btn-outline" href="#estimator">Get a Project Estimate</a>
+    </div>
+  </div>
+</section>
+
+<section id="estimator" class="section">
+<div class="section-title">
+<h2>Instant Price Estimator & WhatsApp Order</h2>
+<p>Select your required digital services to get an estimated quote, then launch directly into WhatsApp to chat with our team.</p>
+</div>
+<div class="calculator-form-container">
+  <div class="calc-card">
+    <h3>1. Configure Services</h3>
+    <p class="subtitle">Pick the deliverables you need for your project.</p>
+
+    <div class="options-group">
+      <label class="option-label">
+        <span class="option-left">
+          <input type="checkbox" class="calc-check" value="2999" data-service="Web Development">
+          <span>Web Development (Landing Page / Website)</span>
+        </span>
+        <span class="option-price">+₹2,999</span>
+      </label>
+
+      <label class="option-label">
+        <span class="option-left">
+          <input type="checkbox" class="calc-check" value="499" data-service="Poster & Graphic Design">
+          <span>Poster / Social Media Creative Design</span>
+        </span>
+        <span class="option-price">+₹499</span>
+      </label>
+
+      <label class="option-label">
+        <span class="option-left">
+          <input type="checkbox" class="calc-check" value="999" data-service="Video Editing">
+          <span>Video Editing (Reels / YouTube / Ads)</span>
+        </span>
+        <span class="option-price">+₹999</span>
+      </label>
+
+      <label class="option-label">
+        <span class="option-left">
+          <input type="checkbox" class="calc-check" value="699" data-service="Photo Retouching">
+          <span>Photo Retouching & Color Grading</span>
+        </span>
+        <span class="option-price">+₹699</span>
+      </label>
+
+      <label class="option-label">
+        <span class="option-left">
+          <input type="checkbox" class="calc-check" value="99" data-service="Rush Delivery">
+          <span>⚡ Express 24-48h Rush Delivery</span>
+        </span>
+        <span class="option-price">+₹99</span>
+      </label>
+    </div>
+
+    <div class="estimate-display">
+      <div class="estimate-title">Estimated Project Total</div>
+      <div class="estimate-amount" id="totalEstimate">₹0</div>
+    </div>
+  </div>
+
+  <div class="form-card">
+    <h3>2. Send Inquiry via WhatsApp</h3>
+    <p class="subtitle">Fill your details and submit to chat instantly on WhatsApp with pre-filled specs.</p>
+
+    <div id="formSuccess" class="form-success-message">
+      💬 Opening WhatsApp chat with your estimated quote...
+    </div>
+
+    <form id="inquiryForm">
+      <div class="form-group">
+        <label for="fullName">Your Name *</label>
+        <input type="text" id="fullName" class="form-control" placeholder="e.g. Rahul Sharma" required>
+      </div>
+
+      <div class="form-group">
+        <label for="phone">Your WhatsApp / Mobile Number *</label>
+        <input type="tel" id="phone" class="form-control" placeholder="e.g. +91 98848 99636" required>
+      </div>
+
+      <div class="form-group">
+        <label for="email">Email Address</label>
+        <input type="email" id="email" class="form-control" placeholder="rahul@example.com">
+      </div>
+
+      <div class="form-group">
+        <label for="details">Project Details / Requirements</label>
+        <textarea id="details" class="form-control" placeholder="Briefly describe your requirements, reference links, deadline, etc..."></textarea>
+      </div>
+
+      <button type="submit" class="btn btn-whatsapp" style="width: 100%;">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91C2.13 13.66 2.59 15.36 3.45 16.86L2.05 22L7.3 20.62C8.75 21.41 10.38 21.83 12.04 21.83C17.5 21.83 21.95 17.38 21.95 11.92C21.95 6.46 17.5 2 12.04 2M12.05 3.67C16.58 3.67 20.28 7.37 20.28 11.92C20.28 16.46 16.58 20.17 12.05 20.17C10.59 20.17 9.17 19.78 7.93 19.05L7.63 18.87L4.5 19.69L5.33 16.64L5.14 16.33C4.34 15.06 3.8 13.51 3.8 11.92C3.8 7.37 7.5 3.67 12.05 3.67M9.05 7.42C8.89 7.42 8.64 7.48 8.42 7.72C8.2 7.96 7.58 8.54 7.58 9.72C7.58 10.9 8.44 12.03 8.56 12.19C8.68 12.35 10.25 14.77 12.65 15.81C13.22 16.06 13.66 16.2 14.01 16.31C14.58 16.49 15.1 16.46 15.51 16.4C15.97 16.33 16.92 15.82 17.12 15.26C17.32 14.7 17.32 14.22 17.26 14.12C17.2 14.02 17.04 13.96 16.8 13.84C16.56 13.72 15.38 13.14 15.16 13.06C14.94 12.98 14.78 12.94 14.62 13.18C14.46 13.42 14 14.02 13.86 14.18C13.72 14.34 13.58 14.36 13.34 14.24C13.1 14.12 12.33 13.87 11.42 13.05C10.71 12.41 10.23 11.62 10.09 11.38C9.95 11.14 10.08 11.01 10.2 10.89C10.31 10.78 10.45 10.6 10.57 10.46C10.69 10.32 10.73 10.22 10.81 10.06C10.89 9.9 10.85 9.76 10.79 9.64C10.73 9.52 10.27 8.39 10.08 7.91C9.89 7.45 9.7 7.51 9.54 7.5L9.05 7.42Z"/></svg>
+        Send Inquiry on WhatsApp
+      </button>
+    </form>
+  </div>
+</div>
+</section>
+<footer>
+<p>© 2026 CreativeByte. All rights reserved. Built for digital creators, founders, and modern brands.</p>
+<p style="margin-top: 0.8rem;">
+Instagram:
+<a href="https://www.instagram.com/creative_byte26?igsh=NTUyZHBxNWVhNHly" target="_blank" rel="noopener noreferrer" style="color: #a5b4fc; text-decoration: none;">@creative_byte26</a>
+&nbsp; | &nbsp;
+Contact:
+<a href="tel:9884899636" style="color: #cbd5e1; text-decoration: none;">9884899636</a>,
+<a href="tel:8610983190" style="color: #cbd5e1; text-decoration: none;">8610983190</a>,
+<a href="tel:8148132731" style="color: #cbd5e1; text-decoration: none;">8148132731</a>
+&nbsp; | &nbsp;
+Email:
+<a href="mailto:creativebyte2026@gmail.com" style="color: #cbd5e1; text-decoration: none;">creativebyte2026@gmail.com</a>
+</p>
+</footer>
+<script>
+// --- Portfolio Filter Logic ---
+const filterButtons = document.querySelectorAll('.filter-btn');
+const portfolioCards = document.querySelectorAll('.portfolio-card');
+filterButtons.forEach(button => {
+  button.addEventListener('click', () => {
+    filterButtons.forEach(btn => btn.classList.remove('active'));
+    button.classList.add('active');
+
+    const filter = button.getAttribute('data-filter');
+
+    portfolioCards.forEach(card => {
+      const category = card.getAttribute('data-category');
+      if (filter === 'all' || category === filter) {
+        card.style.display = 'flex';
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, 10);
+      } else {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(10px)';
+        setTimeout(() => {
+          card.style.display = 'none';
+        }, 200);
+      }
+    });
+  });
+});
+
+// --- Modal Lightbox Preview Logic ---
+const modal = document.getElementById('portfolioModal');
+const modalClose = document.getElementById('modalClose');
+const modalMediaContainer = document.getElementById('modalMediaContainer');
+const modalTitle = document.getElementById('modalTitle');
+const modalDesc = document.getElementById('modalDesc');
+
+portfolioCards.forEach(card => {
+  card.addEventListener('click', () => {
+    const type = card.getAttribute('data-type');
+    const src = card.getAttribute('data-src');
+    const title = card.getAttribute('data-title');
+    const desc = card.getAttribute('data-desc');
+
+    modalTitle.innerText = title;
+    modalDesc.innerText = desc;
+    modalMediaContainer.innerHTML = '';
+
+    if (type === 'video') {
+      const video = document.createElement('video');
+      video.src = src;
+      video.controls = true;
+      video.autoplay = true;
+      video.playsInline = true;
+      modalMediaContainer.appendChild(video);
+    } else if (type === 'image') {
+      const img = document.createElement('img');
+      img.src = src;
+      img.alt = title;
+      modalMediaContainer.appendChild(img);
+    }
+
+    modal.classList.add('active');
+  });
+});
+
+function closeModal() {
+  modal.classList.remove('active');
+  modalMediaContainer.innerHTML = ''; // Clear media element to stop audio/video
+}
+
+modalClose.addEventListener('click', closeModal);
+document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeModal(); });
+modal.addEventListener('click', (e) => {
+  if (e.target === modal) {
+    closeModal();
+  }
+});
+
+// --- Pricing Calculator Logic (INR Formatting) ---
+const checkBoxes = document.querySelectorAll('.calc-check');
+const totalDisplay = document.getElementById('totalEstimate');
+
+function calculateTotal() {
+  let total = 0;
+  checkBoxes.forEach(cb => {
+    if (cb.checked) {
+      total += parseInt(cb.value, 10);
+    }
+  });
+  totalDisplay.innerText = `₹${total.toLocaleString('en-IN')}`;
+}
+
+checkBoxes.forEach(cb => {
+  cb.addEventListener('change', calculateTotal);
+});
+
+// --- WhatsApp Direct Redirect Submission ---
+const CREATIVEBYTE_WHATSAPP_NUMBER = '919884899636';
+
+const inquiryForm = document.getElementById('inquiryForm');
+const formSuccess = document.getElementById('formSuccess');
+
+inquiryForm.addEventListener('submit', (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById('fullName').value.trim();
+  const phone = document.getElementById('phone').value.trim();
+  const email = document.getElementById('email').value.trim() || 'Not provided';
+  const details = document.getElementById('details').value.trim() || 'None provided';
+
+  const selectedServices = Array.from(checkBoxes)
+    .filter(cb => cb.checked)
+    .map(cb => `• ${cb.getAttribute('data-service')}`);
+
+  const servicesText = selectedServices.length > 0 
+    ? selectedServices.join('\n') 
+    : '• General Discussion';
+
+  const totalEstimate = totalDisplay.innerText;
+
+  const message = `*New Inquiry for CreativeByte*\n\n` +
+    `*Name:* ${name}\n` +
+    `*Client Contact:* ${phone}\n` +
+    `*Email:* ${email}\n\n` +
+    `*Selected Services:*\n${servicesText}\n\n` +
+    `*Estimated Baseline Total:* ${totalEstimate}\n\n` +
+    `*Project Details:*\n${details}`;
+
+  const whatsappURL = `https://wa.me/${CREATIVEBYTE_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+
+  formSuccess.style.display = 'block';
+
+  setTimeout(() => {
+    window.open(whatsappURL, '_blank');
+  }, 700);
+
+  setTimeout(() => {
+    formSuccess.style.display = 'none';
+  }, 5000);
+});
+
+// Graceful fallback for optional portfolio media.
+document.querySelectorAll('.portfolio-preview img').forEach(img => {
+  img.addEventListener('error', () => {
+    img.style.display = 'none';
+    const fallback = document.createElement('div');
+    fallback.className = 'asset-fallback';
+    fallback.innerHTML = '<strong>CreativeByte</strong><span>Portfolio preview</span>';
+    img.parentElement.appendChild(fallback);
+  });
+});
+document.querySelectorAll('.portfolio-preview video').forEach(video => {
+  video.addEventListener('error', () => {
+    video.style.display = 'none';
+    const fallback = document.createElement('div');
+    fallback.className = 'asset-fallback';
+    fallback.innerHTML = '<strong>CreativeByte</strong><span>Video preview</span>';
+    video.parentElement.appendChild(fallback);
+  });
+});
+
+</script>
+</body>
+</html>
